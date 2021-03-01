@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int TestaPrimo(int n) {
+    int EhPrimo = 1,
+        d=2;
+    if (n <= 1)
+    EhPrimo = 0;
+
+    while (EhPrimo == 1 && d <= n /2) {
+    if (n % d  == 0)
+        EhPrimo = 0;
+    d = d + 1;
+    }
+    return EhPrimo;
+}
+
+int main(int argc, char *argv[]) {
+int n = 37;//valor que sera calculado
+int i = 0;
+float salvar= 0;//ele salva o valor que salvara o tempo de 30 execuções
+float tempo=0;
+for(i =0;i < 30; i++){
+ 	clock_t start = clock();
+ 	int test = TestaPrimo(n);
+	if(test == 1){
+		printf("E primo\n");
+	}
+	if(test == 0){
+		printf("E nao primo\n");
+	}
+    tempo = (double)(clock() - start) / CLOCKS_PER_SEC;
+    
+	salvar += tempo;
+ 	}
+	
+	
+	salvar = salvar * 1000;// o transforma de segundos para milisegundos
+	salvar = salvar /30;//consegue a media das 30 execuções
+	printf("o tempo medio e:");
+	printf("%f",salvar);
+	return 0;
+}
