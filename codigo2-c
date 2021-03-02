@@ -10,7 +10,7 @@ int main()
    float salvar= 0;//ele salva o valor que salvara o tempo de 30 execuções
 	float tempo=0;
    printf("Numero:");
-   scanf("%d", &num);
+   scanf("%d", &num);//digita o numero que ira checar
    for(d =0;d < 30; d++){
    	
 	clock_t start = clock();
