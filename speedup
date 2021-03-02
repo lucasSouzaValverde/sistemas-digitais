@@ -18,11 +18,12 @@ int TestaPrimo(int n) {
 }
 
 int main(int argc, char *argv[]) {
-int n = 2147483647;//valor que sera calculado
+int n = 664283;//valor que sera calculado
 int i = 0;
 float salvar= 0;//ele salva o valor que salvara o tempo de 30 execuções
 float tempo=0;
 float valores[30];//salva os valores individuais de tempo
+float desvio[30];//salva os valores para o desvio padrao
 for(i =0;i < 30; i++){
  	clock_t start = clock();
  	int test = TestaPrimo(n);
@@ -34,6 +35,7 @@ for(i =0;i < 30; i++){
 	}
     tempo = (double)(clock() - start) / CLOCKS_PER_SEC;
     valores[i]=tempo*1000;
+    desvio[i]=(tempo*tempo)*1000;//o eleva a segunda e o transforma em milisegundos
 	salvar += tempo;
  	}
 	
@@ -48,5 +50,15 @@ for(i =0;i < 30; i++){
 	printf("%.3f\n",valores[f]);
 	f++;	
 	}
+	int t=0;
+	salvar=0;
+	while(t<30){
+	salvar += desvio[t];
+	t++;	
+	}
+	salvar = salvar /30;//os divide por 30
+	salvar= sqrt(salvar);//faz a raiz
+	printf("o desvio padrao:");
+	printf("%f",salvar);
 	return 0;
 }
